@@ -105,7 +105,7 @@ def get_tables_for_query(query):
                 continue
             else:
                 for item in (c for c in child if isinstance(c, QuerySet)):
-                    tables |= get_tables_for_query(item.query)
+                    tables |= set(get_tables_for_query(item.query))
         return tables
 
     if query.where and query.where.children:
